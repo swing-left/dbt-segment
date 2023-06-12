@@ -62,9 +62,9 @@ renamed as (
                 ';', '')
         end as device
 
-        {% if var('segment_pass_through_columns') != [] %}
+        {% if var('vf_segment_pass_through_columns') != [] %}
         ,
-        {{ var('segment_pass_through_columns') | join (", ")}}
+        {{ var('vf_segment_pass_through_columns') | join (", ")}}
 
         {% endif %}
 
