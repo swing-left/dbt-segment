@@ -2,7 +2,7 @@
     materialized = 'incremental',
     unique_key = 'session_id',
     sort = 'session_start_tstamp',
-    partition_by = {'field': 'session_start_tstamp', 'data_type': 'timestamp', 'granularity': var('segment_bigquery_partition_granularity')},
+    partition_by = {'field': 'session_start_tstamp', 'data_type': 'timestamp', 'granularity': var('vf_segment_bigquery_partition_granularity')},
     dist = 'session_id',
     cluster_by = 'session_id'
     )}}
@@ -17,7 +17,7 @@ more complicated, the performance tradeoff is worth it.
 
 with sessions as (
 
-    select * from {{ref('segment_web_sessions__stitched')}}
+    select * from {{ref('vf_segment_web_sessions__stitched')}}
 
     {% if is_incremental() %}
     {{

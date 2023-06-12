@@ -2,7 +2,7 @@
     materialized = 'incremental',
     unique_key = 'page_view_id',
     sort = 'tstamp',
-    partition_by = {'field': 'tstamp', 'data_type': 'timestamp', 'granularity': var('segment_bigquery_partition_granularity')},
+    partition_by = {'field': 'tstamp', 'data_type': 'timestamp', 'granularity': var('vf_segment_bigquery_partition_granularity')},
     dist = 'page_view_id',
     cluster_by = 'page_view_id'
     )}}
@@ -18,12 +18,12 @@ events we need to calculate.
 
 with pageviews as (
 
-    select * from {{ref('segment_web_page_views')}}
+    select * from {{ref('vf_segment_web_page_views')}}
 
     {% if is_incremental() %}
     where anonymous_id in (
         select distinct anonymous_id
-        from {{ref('segment_web_page_views')}}
+        from {{ref('vf_segment_web_page_views')}}
         {{
             generate_sessionization_incremental_filter( this, 'tstamp', 'tstamp', '>' )
         }}
@@ -91,7 +91,7 @@ new_sessions as (
     select
         *,
         case
-            when period_of_inactivity <= {{var('segment_inactivity_cutoff')}} then 0
+            when period_of_inactivity <= {{var('vf_segment_inactivity_cutoff')}} then 0
             else 1
         end as new_session
     from diffed
@@ -125,7 +125,7 @@ session_ids as (
 
     select
 
-        {{dbt_utils.star(ref('segment_web_page_views'))}},
+        {{dbt_utils.star(ref('vf_segment_web_page_views'))}},
         page_view_number,
         {{dbt_utils.generate_surrogate_key(['anonymous_id', 'session_number'])}} as session_id
 

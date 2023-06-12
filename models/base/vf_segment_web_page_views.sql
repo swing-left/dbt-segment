@@ -1,6 +1,6 @@
 with source as (
 
-    select * from {{var('segment_page_views_table')}}
+    select * from {{var('vf_segment_page_views_table')}}
 
 ),
 

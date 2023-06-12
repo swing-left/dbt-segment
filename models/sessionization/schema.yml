@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: segment_web_user_stitching
+  - name: vf_segment_web_user_stitching
     description: "{{doc('segment_web_user_stitching')}}"
     columns:
       - name: anonymous_id
@@ -9,7 +9,7 @@ models:
           - unique
           - not_null
 
-  - name: segment_web_page_views__sessionized
+  - name: vf_segment_web_page_views__sessionized
     description: "{{doc('segment_web_page_views__sessionized')}}"
     columns:
       - name: page_view_id
@@ -17,7 +17,7 @@ models:
           - unique
           - not_null
 
-  - name: segment_web_sessions__initial
+  - name: vf_segment_web_sessions__initial
     description: "{{doc('segment_web_sessions__initial')}}"
     columns:
       - name: session_id
@@ -25,8 +25,8 @@ models:
           - unique
           - not_null
 
-  - name: segment_web_sessions__stitched
-    description: "{{doc('segment_web_sessions__stitched')}}"
+  - name: vf_segment_web_sessions__stitched
+    description: "{{doc('vf_segment_web_sessions__stitched')}}"
     columns:
       - name: session_id
         description: ''
@@ -34,8 +34,8 @@ models:
           - unique
           - not_null
 
-  - name: segment_web_sessions
-    description: "{{doc('segment_web_sessions')}}"
+  - name: vf_segment_web_sessions
+    description: "{{doc('vf_segment_web_sessions')}}"
     columns:
       - name: session_id
         description: ''

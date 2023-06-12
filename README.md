@@ -19,7 +19,7 @@ config-version: 2
 
 vars:
   segment:
-    segment_page_views_table: "{{ source('segment', 'pages') }}"
+    segment_page_views_table: "{{ source('vf_segment', 'pages') }}"
 
 ```
 This package assumes that your data is in a structure similar to the test
@@ -39,7 +39,7 @@ config-version: 2
 
 vars:
   segment:
-    segment_page_views_table: "{{ source('segment', 'pages') }}"
+    segment_page_views_table: "{{ source('vf_segment', 'pages') }}"
     segment_sessionization_trailing_window: 3
     segment_inactivity_cutoff: 30 * 60
     segment_pass_through_columns: []

@@ -2,7 +2,7 @@
     materialized = 'incremental',
     unique_key = 'session_id',
     sort = 'session_start_tstamp',
-    partition_by = {'field': 'session_start_tstamp', 'data_type': 'timestamp', 'granularity': var('segment_bigquery_partition_granularity')},
+    partition_by = {'field': 'session_start_tstamp', 'data_type': 'timestamp', 'granularity': var('vf_segment_bigquery_partition_granularity')},
     dist = 'session_id',
     cluster_by = 'session_id'
     )}}
@@ -39,14 +39,14 @@
     'page_url_query' : 'last_page_url_query'
     } %}
 
-{% for col in var('segment_pass_through_columns') %}
+{% for col in var('vf_segment_pass_through_columns') %}
     {% do first_values.update({col: 'first_' ~ col}) %}
     {% do last_values.update({col: 'last_' ~ col}) %}
 {% endfor %}
 
 with pageviews_sessionized as (
 
-    select * from {{ref('segment_web_page_views__sessionized')}}
+    select * from {{ref('vf_segment_web_page_views__sessionized')}}
 
     {% if is_incremental() %}
     {{
@@ -58,7 +58,7 @@ with pageviews_sessionized as (
 
 referrer_mapping as (
 
-    select * from {{ ref('referrer_mapping') }}
+    select * from {{ ref('vf_referrer_mapping') }}
 
 ),
 
