@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: vf_segment_web_page_views
-    description: "{{doc('vf_segment_web_page_views')}}"
+    description: "{{doc('segment_web_page_views')}}"
     columns:
       - name: page_view_id
         tests:

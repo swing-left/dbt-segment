@@ -26,7 +26,7 @@ models:
           - not_null
 
   - name: vf_segment_web_sessions__stitched
-    description: "{{doc('vf_segment_web_sessions__stitched')}}"
+    description: "{{doc('segment_web_sessions__stitched')}}"
     columns:
       - name: session_id
         description: ''
@@ -35,7 +35,7 @@ models:
           - not_null
 
   - name: vf_segment_web_sessions
-    description: "{{doc('vf_segment_web_sessions')}}"
+    description: "{{doc('segment_web_sessions')}}"
     columns:
       - name: session_id
         description: ''
