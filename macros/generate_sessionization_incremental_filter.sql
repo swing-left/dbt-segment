@@ -8,7 +8,7 @@
         select
             {{ dbt.dateadd(
                 'hour',
-                -var('segment_sessionization_trailing_window'),
+                -var('vf_segment_sessionization_trailing_window'),
                 'max(' ~ max_tstamp ~ ')'
             ) }}
         from {{ merge_target }}
@@ -20,7 +20,7 @@
         select
             timestamp_sub(
                 max({{ max_tstamp }}),
-                interval {{ var('segment_sessionization_trailing_window') }} hour
+                interval {{ var('vf_segment_sessionization_trailing_window') }} hour
                 )
         from {{ merge_target }}
     )
@@ -31,7 +31,7 @@
         select
             {{ dbt.dateadd(
                 'hour',
-                -var('segment_sessionization_trailing_window'),
+                -var('vf_segment_sessionization_trailing_window'),
                 'max(' ~ max_tstamp ~ ')'
             ) }}
         from {{ merge_target }}
